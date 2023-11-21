@@ -230,8 +230,9 @@ private:
   // readIdxCache_ and writeIdxCache_ is used to reduce the amount of cache
   // coherency traffic
   alignas(kCacheLineSize) std::atomic<size_t> writeIdx_ = {0};
-  alignas(kCacheLineSize) size_t readIdxCache_ = 0;
+  size_t readIdxCache_ = 0; // same cacheline as writeIdx_
+
   alignas(kCacheLineSize) std::atomic<size_t> readIdx_ = {0};
-  alignas(kCacheLineSize) size_t writeIdxCache_ = 0;
+  size_t writeIdxCache_ = 0; // same cacheline as readIdx_
 };
 } // namespace rigtorp
